@@ -1,8 +1,9 @@
 class Triangle {
-  constructor(vertex1, vertex2, vertex3) {
+  constructor(vertex1, vertex2, vertex3, name) {
     this.vertex1 = vertex1;
     this.vertex2 = vertex2;
     this.vertex3 = vertex3;
+    this.name = name
   }
 
   get firstSide() {
@@ -32,42 +33,51 @@ class Triangle {
   }
 }
 
-const triangle = new Triangle(
-  new Point(4, 7),
-  new Point(1, 4),
-  new Point(5, 4)
-);
+const triangles = [
+  new Triangle(
+    new Point(4, 7, 'A'),
+    new Point(1, 4, 'B'),
+    new Point(5, 4, 'C'),
+    'ABC'
+  ),
+  new Triangle(
+    new Point(6, 1, 'E'),
+    new Point(2, 5, 'F'),
+    new Point(8, 4, 'G'),
+    'EFG'
+  ),
+]
 
-const vertexArr = [triangle.vertex1, triangle.vertex2, triangle.vertex3];
-const appTriangle = document.getElementById("app-triangle");
+const renderTriangle = (triangle) => `
+  <div class='el-card' ${triangle.isValid() ? '' : 'invalid'}>
+      <h2 class='el-card-name'>${triangle.name}</h2>
 
-appTriangle.innerHTML = `
-    <div class="contanier" ${triangle.isValid() ? "" : "invalid"}>
-        <h2 class="name">Triangle</h2>
+        <div class='triangle-area'>Area: ${triangle.area().toFixed(2)} </div>
+      
+      <div class='triangle-sides'>Sides:
+        <b>${triangle.vertex1.name}${triangle.vertex2.name}:</b>
+        <span class='sides'>${triangle.firstSide.toFixed(2)}</span>
+        <b>${triangle.vertex2.name}${triangle.vertex3.name}:</b>
+        <span class='sides'>${triangle.secondSide.toFixed(2)}</span>
+        <b>${triangle.vertex3.name}${triangle.vertex1.name}:</b>
+        <span class='sides'>${triangle.thirdSide.toFixed(2)}</span>
+      </div>
 
-            <div class="triangle-area">Area: ${triangle.area().toFixed(2)} </div>
-        
-                <div class="triangle-sides">Sides:
-                    <b>Side1:</b>
-                    <span class="sides">${triangle.firstSide.toFixed(2)}</span>
-                    <b>Side2:</b>
-                    <span class="sides">${triangle.secondSide.toFixed(2)}</span>
-                    <b>Side3:</b>
-                    <span class="sides">${triangle.thirdSide.toFixed(2)}</span>
-                </div>
-
-                <div class="triangle-vertices">Vertcies:
-                ${vertexArr.map((point) => `
-                    <div class="point-card">
-                      <div class="point-info-container">
-                        <div>
-                          <b>x:</b>
-                          <span>${point.x}</span>
-                          <b>y:</b>
-                          <span>${point.y}</span>
-                        </div>
-                      </div>
-                    </div>`).join("")}
-            <div>
+      <div class='triangle-vertices'>
+      Vertcies:
+      ${renderPoint(triangle.vertex1)}
+      ${renderPoint(triangle.vertex2)}
+      ${renderPoint(triangle.vertex3)}
     </div>
+  </div>
 `;
+
+const renderTriangleList = (triangleList) => `
+  <div class ='container'>
+    <h2 class='container-name'>Triangles</h2>
+    ${triangleList.map(renderTriangle).join('')}
+  </div>
+`
+
+const appTriangle = document.getElementById('app-triangle');
+appTriangle.innerHTML = renderTriangleList(triangles);

@@ -1,7 +1,8 @@
 class Point {
-    constructor(x, y) {
+    constructor(x, y, name) {
       this.x = x;
       this.y = y;
+      this.name = name;
     }
   
     distanceFrom(point) {
@@ -13,26 +14,29 @@ class Point {
     }
 }
   
-const points = [new Point(5, 6), new Point(6, 3), new Point(4, 8)];
-const appPoint = document.getElementById("app-point");
-  
-appPoint.innerHTML = `
-    <div class="container">
-        <h2 class="name">Point</h2>
-  
-            <div class="point-list">
-                ${points.map((point) => `
-                    <div class="point-card">
-                        <div class="point-info-container">
-                            <div>
-                                <b>x:</b>
-                                <span>${point.x}</span>
-                                <b>y:</b>
-                                <span>${point.y}</span>
-                            </div>
-                        </div>
-                    </div>`).join("")}
-            </div>
+const points = [new Point(5, 6, 'A'), new Point(6, 3, 'B'), new Point(4, 8, 'C')];
+const appPoint = document.getElementById('app-point');
+
+const renderPoint = (point) => `
+    <div class='point-chip'>
+            <b>${point.name}</b>
+            <b>(</b>
+            <span>${point.x}</span>
+            <b>,</b>
+            <span>${point.y}</span>
+            <b>)</b>
     </div>
 `;
-  
+
+const renderPointList = (pointList) => `
+    <div class='point-list'>
+    ${points.map(renderPoint).join('')}
+    </div>
+`;
+
+appPoint.innerHTML = `
+    <div class='container'>
+        <h2 class='container-name'>Points</h2>
+        ${renderPointList(points)}
+    </div>
+`;
