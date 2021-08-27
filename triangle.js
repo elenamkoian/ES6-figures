@@ -4,7 +4,7 @@ class Triangle {
     this.vertex2 = vertex2;
     this.vertex3 = vertex3;
     this.name = name
-  }
+}
 
   get firstSide() {
     return this.vertex1.distanceFrom(this.vertex2);
@@ -44,31 +44,31 @@ const triangles = [
     new Point(6, 1, 'E'),
     new Point(2, 5, 'F'),
     new Point(8, 4, 'G'),
-    'EFG'
+    'DEF'
   ),
 ]
 
 const renderTriangle = (triangle) => `
-  <div class='el-card' ${triangle.isValid() ? '' : 'invalid'}>
+  <div class='el-card ${triangle.isValid() ? '' : 'invalid'}'>
       <h2 class='el-card-name'>${triangle.name}</h2>
 
-        <div class='triangle-area'>Area: ${triangle.area().toFixed(2)} </div>
+      <div class='content-div'>Area: ${triangle.area().toFixed(2)} </div>
       
-      <div class='triangle-sides'>Sides:
+      <div class='content-div'>Sides:
         <b>${triangle.vertex1.name}${triangle.vertex2.name}:</b>
-        <span class='sides'>${triangle.firstSide.toFixed(2)}</span>
+        <span class='content-div'>${triangle.firstSide.toFixed(2)}</span>
         <b>${triangle.vertex2.name}${triangle.vertex3.name}:</b>
-        <span class='sides'>${triangle.secondSide.toFixed(2)}</span>
+        <span class='content-div'>${triangle.secondSide.toFixed(2)}</span>
         <b>${triangle.vertex3.name}${triangle.vertex1.name}:</b>
-        <span class='sides'>${triangle.thirdSide.toFixed(2)}</span>
+        <span class='content-div'>${triangle.thirdSide.toFixed(2)}</span>
       </div>
 
-      <div class='triangle-vertices'>
-      Vertcies:
-      ${renderPoint(triangle.vertex1)}
-      ${renderPoint(triangle.vertex2)}
-      ${renderPoint(triangle.vertex3)}
-    </div>
+      <div class='content-div-with-chip'>
+        Vertcies:
+          ${renderPoint(triangle.vertex1)}
+          ${renderPoint(triangle.vertex2)}
+          ${renderPoint(triangle.vertex3)}
+      </div>
   </div>
 `;
 
@@ -77,7 +77,7 @@ const renderTriangleList = (triangleList) => `
     <h2 class='container-name'>Triangles</h2>
     ${triangleList.map(renderTriangle).join('')}
   </div>
-`
+`;
 
 const appTriangle = document.getElementById('app-triangle');
 appTriangle.innerHTML = renderTriangleList(triangles);

@@ -1,5 +1,4 @@
 body {
-  background-color: WhiteSmoke;
   font-size: 16px;
   margin: 0;
 }
@@ -8,7 +7,7 @@ body {
   padding: 24px;
   display: flex;
   flex-direction: column;
-  background: ghostwhite;
+  background-color: ghostwhite;
   gap: 24px;
 }
 
@@ -26,14 +25,14 @@ body {
     -5px 4px 6px -5px rgb(0 0 0 / 70%);
   border-radius: 4px;
   padding: 8px;
-  background-color: AliceBlue;
+  background-color: aliceblue;
   border-style: solid;
   border-width: 1px;
   border-color: grey;
 }
 
 .el-card.invalid {
-  background-color: brown;
+  background-color: salmon;
 }
 
 .el-card-name {
@@ -42,46 +41,31 @@ body {
   color: black;
   margin: 8px;
 }
-  
+
 .point-list {
   display: flex;
   align-items: center;
 }
-  
+
 .point-chip {
   border-radius: 4px;
   display: flex;
   padding: 10px;
   margin: 8px;
   background-color: white;
-  border-style: solid;
-  border-width: 1px;
-  border-color: grey;
+  border: 1px solid grey;
   font-family: monospace;
 }
 
-.triangle-sides {
-  color: black;
-  margin: 4px;
-  padding: 4px;
-}
-  
-.triangle-area {
-  color: black;
+.content-div{
   margin: 4px;
   padding: 4px;
 }
 
-.triangle-vertices {
+.content-div-with-chip {
   display: flex;
   align-items: center;
   color: black;
   padding: 0px 8px;
   display: flex;
 }
-
-.sides {
-  margin: 8px;
-}
-
- 
